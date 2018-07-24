@@ -21,3 +21,15 @@ app.get('/api/v1/books', (req,res)=> res.send([
     "description": "Follows the adventures of Paul Atreides, the son of a betrayed duke given up for dead on a treacherous desert planet and adopted by its fierce, nomadic people, who help him unravel his most unexpected destiny."
   }
 ]));
+
+app.get('/api/v1/books/:id',(req,res) => {
+  
+  let currentBook= books.find(book=> book.id ===parseInt(req.params.id));
+  if(currentBook){
+    res.send(currentBook);
+  }
+  else{
+    res.sendStatus(404);
+  }
+});
+
