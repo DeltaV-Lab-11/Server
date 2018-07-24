@@ -8,7 +8,8 @@ if (!PORT) throw new Error('Where your port at?');
 const app = express();
 
 app.use(cors());
-//TODO add middleware here
+app.use(express.json());
+app.use(express.urlencoded({ extended:ture }));
 
 app.listen(PORT, console.log(`running on port ${PORT}`));
 
