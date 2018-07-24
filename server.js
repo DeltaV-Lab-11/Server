@@ -1,16 +1,18 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 const PORT = process.env.PORT;
 if (!PORT) throw new Error('Where your port at?');
 
 const app = express();
 
+app.use(cors());
 //TODO add middleware here
 
 app.listen(PORT, console.log(`running on port ${PORT}`));
 
-app.get('/book', (req,res)=> res.send([
+app.get('/api/v1/books', (req,res)=> res.send([
   {
     "title": "Dune",
     "author": "Frank Herbert",
