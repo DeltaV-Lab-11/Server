@@ -33,3 +33,14 @@ app.get('/api/v1/books/:id',(req,res) => {
   }
 });
 
+app.post('/api/v1/books/new',(req,res) => {
+  let newBook = {};
+  newBook.id= newBookId++;
+  newBook.title = req.body.title;
+  newBook.author = req.body.author;
+  newBook.isbn = req.body.isbn;
+  newBook.image_url = req.body.image_url;
+  newBook.description = req.body.description;
+  books.push(newBook);
+  res.sendStatus(201);
+});
