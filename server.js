@@ -13,15 +13,18 @@ app.use(express.urlencoded({ extended:true }));
 
 app.listen(PORT, console.log(`running on port ${PORT}`));
 
-app.get('/api/v1/books', (req,res)=> res.send([
+let nextBookId = 1;
+  let books=[
   {
+    "bookId":nextBookId++,
     "title": "Dune",
     "author": "Frank Herbert",
     "isbn": "ISBN_13 9780441013593",
     "image_url": "http://books.google.com/books/content?id=B1hSG45JCX4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
     "description": "Follows the adventures of Paul Atreides, the son of a betrayed duke given up for dead on a treacherous desert planet and adopted by its fierce, nomadic people, who help him unravel his most unexpected destiny."
-  }
-]));
+  }]
+
+app.get('/api/v1/books', (req,res)=> res.send(books));
 
 app.get('/api/v1/books/:id',(req,res) => {
   
@@ -36,7 +39,7 @@ app.get('/api/v1/books/:id',(req,res) => {
 
 app.post('/api/v1/books/new',(req,res) => {
   let newBook = {};
-  newBook.id= newBookId++;
+  newBook.bookId= nextBookId++;
   newBook.title = req.body.title;
   newBook.author = req.body.author;
   newBook.isbn = req.body.isbn;
