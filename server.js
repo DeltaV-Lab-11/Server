@@ -28,7 +28,7 @@ app.get('/api/v1/books', (req,res)=> res.send(books));
 
 app.get('/api/v1/books/:id',(req,res) => {
   
-  let currentBook= books.find(book=> book.id ===parseInt(req.params.id));
+  let currentBook= books.find(book=> book.bookId ===parseInt(req.params.id));
   if(currentBook){
     res.send(currentBook);
   }
