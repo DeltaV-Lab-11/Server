@@ -48,3 +48,17 @@ app.post('/api/v1/books/new',(req,res) => {
   books.push(newBook);
   res.sendStatus(201);
 });
+
+app.put('/api/v1/books/:id',(req,res)=> {
+  books = books.map(book => {
+    if (book.bookId === parseInt(req.params.id)){
+      book.title = req.body.title;
+      book.author = req.body.author;
+      book.isbn = req.body.isbn;
+      book.image_url = req.body.image_url;
+      book.description = req.body.description;
+      }
+      return book;
+  })
+  res.sendStatus(204);
+})
