@@ -62,3 +62,13 @@ app.put('/api/v1/books/:id',(req,res)=> {
   })
   res.sendStatus(204);
 })
+
+app.delete('/api/v1/books/:id', (req, res)=> {
+  console.log(books);
+  console.log(req.params.id);
+  books = books.filter(book => {
+    return book.bookId !== parseInt(req.params.id)
+  })
+  console.log(books);
+  res.sendStatus(204);
+})
